@@ -2,10 +2,13 @@ let express = require('express');
 let app = express();
 let ejsLayouts = require('express-ejs-layouts');
 let dinoController = require('./controllers/dinoController');
+let cryptidController = require('./controllers/cryptidController');
 
 app.set('view engine', 'ejs');
 app.use(ejsLayouts);
+app.use(express.urlencoded({ extended: false }));
 app.use('/dinosaurs', dinoController);
+app.use('/cryptids', cryptidController);
 
 app.get('/', (req, res) => {
   res.send('This is the home page.');
